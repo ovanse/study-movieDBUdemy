@@ -19,30 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             addForm = document.querySelector('form.add'),
             addInput = addForm.querySelector('.adding__input'),
             checkbox = addForm.querySelector('[type="checkbox"]');
-    
-    addForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        let newFilm = addInput.value;
-        const favorite = checkbox.checked;
-
-        if (newFilm) {
-
-            if (newFilm.length > 21) {
-                newFilm = `${newFilm.substring(0,22)}...`
-            }
-
-            if (favorite) {
-                console.log('Добавляем любимый фильм');
-            }
-
-            movieDB.movies.push(newFilm);
-            sortArr(movieDB.movies);
-            createMovieList(movieDB.movies, movieList);
-        }
-
-        event.target.reset();
-    });
 
     const deleteAdv = (arr) => {
         arr.forEach(item => {
@@ -80,6 +56,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortArr = (arr) => {
         arr.sort();
     };
+
+    addForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        let newFilm = addInput.value;
+        const favorite = checkbox.checked;
+
+        if (newFilm) {
+
+            if (newFilm.length > 21) {
+                newFilm = `${newFilm.substring(0,22)}...`
+            }
+
+            if (favorite) {
+                console.log('Добавляем любимый фильм');
+            }
+
+            movieDB.movies.push(newFilm);
+            sortArr(movieDB.movies);
+            createMovieList(movieDB.movies, movieList);
+        };
+
+        event.target.reset();
+    });
 
     deleteAdv(adv);
     makeChanges();
